@@ -91,6 +91,12 @@ mvn test
 
 58 pruebas unitarias con JUnit 5. Los servicios se prueban con DAO en memoria (`src/test/.../dao/memoria`), sin necesitar MySQL.
 
+Prueba de integración contra MySQL (venta, alerta, renovación y precio con los DAO reales; deja datos de prueba, usar en la base de desarrollo):
+
+```bash
+mvn test -Dtest=FlujoMySQLIT -Dsurefire.failIfNoSpecifiedTests=false
+```
+
 ## Documentación del código
 
 ```bash

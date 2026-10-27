@@ -1,0 +1,41 @@
+@startwbs
+<style>
+wbsDiagram {
+  FontName Arial
+  FontSize 12
+  node { BackgroundColor #FFFFFF; LineColor #1E3A5F; RoundCorner 8 }
+  :depth(0) { BackgroundColor #1E3A5F; FontColor #FFFFFF }
+  :depth(1) { BackgroundColor #DCE8F5 }
+}
+</style>
+* Sistema de Gestión de Licencias AUTODEV
+** 1. Gestión del proyecto
+*** 1.1 Lean Canvas
+*** 1.2 Project Charter
+*** 1.3 EDT y cronograma (Gantt)
+*** 1.4 Seguimiento por avances (APF)
+** 2. Análisis
+*** 2.1 Requisitos (SRS)
+*** 2.2 Casos de uso
+*** 2.3 Procesos BPMN (5)
+** 3. Diseño
+*** 3.1 Base de datos (lógico y físico)
+*** 3.2 Diagrama de clases
+*** 3.3 Prototipos UX/UI
+*** 3.4 Arquitectura MVC + DAO
+** 4. Desarrollo (Java)
+*** 4.1 Login y seguridad
+*** 4.2 Registro de ventas y renovaciones
+*** 4.3 Licencias y exportación Excel
+*** 4.4 Alertas de vencimiento
+*** 4.5 Resumen y reportes
+*** 4.6 Clientes y programas
+** 5. Pruebas
+*** 5.1 Pruebas unitarias (TDD)
+*** 5.2 Pruebas de seguridad
+*** 5.3 Pruebas de integración
+** 6. Despliegue y cierre
+*** 6.1 Empaquetado con Maven
+*** 6.2 Manuales de usuario y técnico
+*** 6.3 Plan de monitoreo y mantenimiento
+@endwbs

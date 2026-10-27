@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>Wireframes AUTODEV</title>
+<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; font-family: 'Balsamiq Sans', 'Comic Sans MS', cursive; color: #222; }
+  .pantalla { display: none; width: 1100px; height: 680px; padding: 14px; }
+  .pantalla.activa { display: block; }
+  .ventana { width: 100%; height: 100%; border: 3px solid #222; border-radius: 14px 6px 12px 5px / 6px 12px 5px 14px; overflow: hidden; display: flex; flex-direction: column; }
+  .barra { height: 34px; border-bottom: 3px solid #222; display: flex; align-items: center; padding: 0 12px; gap: 8px; font-size: 15px; }
+  .barra i { width: 13px; height: 13px; border: 2px solid #222; border-radius: 50%; display: inline-block; }
+  .cuerpo { flex: 1; display: flex; }
+  .menu { width: 200px; border-right: 3px solid #222; padding: 16px 12px; background: #efefef; display: flex; flex-direction: column; gap: 10px; }
+  .menu .logo { font-size: 24px; font-weight: 700; }
+  .menu .item { border: 2px solid #222; border-radius: 8px 4px 9px 3px; padding: 7px 10px; background: #fff; font-size: 16px; }
+  .menu .item.sel { background: #444; color: #fff; }
+  .menu .pie { margin-top: auto; font-size: 14px; }
+  .contenido { flex: 1; padding: 18px 22px; display: flex; flex-direction: column; gap: 12px; }
+  h1 { margin: 0; font-size: 28px; }
+  .sub { color: #666; font-size: 15px; margin-top: -8px; }
+  .fila { display: flex; gap: 12px; align-items: center; }
+  .caja { border: 2.5px solid #222; border-radius: 10px 4px 12px 5px / 5px 12px 4px 10px; padding: 10px 14px; background: #fff; }
+  .tarjeta { flex: 1; }
+  .tarjeta b { display: block; font-size: 26px; margin-top: 4px; }
+  .campo { border: 2px solid #222; border-radius: 6px 3px 7px 2px; height: 32px; padding: 4px 8px; flex: 1; background: #fff; color: #888; font-size: 15px; }
+  .combo::after { content: ' ▾'; float: right; color: #222; }
+  .lbl { width: 130px; font-size: 16px; }
+  .btn { border: 2.5px solid #222; border-radius: 9px 4px 10px 3px; padding: 6px 16px; background: #fff; font-size: 16px; white-space: nowrap; }
+  .btn.pri { background: #444; color: #fff; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { border: 2px solid #222; padding: 6px 8px; text-align: left; }
+  th { background: #e4e4e4; }
+  .barraP { height: 14px; border: 2px solid #222; border-radius: 4px; flex: 1; position: relative; }
+  .barraP span { position: absolute; left: 0; top: 0; bottom: 0; background: #777; }
+  .nota { border: 2px dashed #999; padding: 6px 10px; color: #555; font-size: 14px; border-radius: 6px; }
+  .rojo { text-decoration: underline wavy #222; font-weight: 700; }
+</style></head>
+<body>
+
+<!-- 1 Login -->
+<div class="pantalla" id="login">
+  <div class="ventana"><div class="barra"><i></i><i></i><i></i> AUTODEV - Licencias</div>
+    <div class="cuerpo" style="align-items:center;justify-content:center;background:#f3f3f3">
+      <div class="caja" style="width:380px;padding:28px 34px;display:flex;flex-direction:column;gap:12px">
+        <div style="text-align:center;font-size:34px;font-weight:700">AUTODEV</div>
+        <div style="text-align:center;color:#666;margin-top:-10px">Gestión de Licencias</div>
+        <div style="font-size:20px;font-weight:700;margin-top:10px">Iniciar sesión</div>
+        <div>Usuario</div><div class="campo">usuario</div>
+        <div>Contraseña</div><div class="campo">••••••••&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 👁</div>
+        <div class="btn pri" style="text-align:center;margin-top:8px">Ingresar</div>
+        <div class="nota">3 intentos fallidos → bloqueo de 30 segundos</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- plantilla del menú -->
+<template id="menu"><div class="menu">
+  <div class="logo">AUTODEV</div><div style="margin-top:-8px;color:#555">Gestión de Licencias</div>
+  <div class="item" data-k="resumen">Resumen</div><div class="item" data-k="venta">Registrar venta</div>
+  <div class="item" data-k="licencias">Licencias</div><div class="item" data-k="alertas">Alertas (3)</div>
+  <div class="item" data-k="clientes">Clientes</div><div class="item" data-k="programas">Programas</div>
+  <div class="pie"><b>Nombre del usuario</b><br>Rol<div class="btn" style="margin-top:8px;text-align:center">Cerrar sesión</div></div>
+</div></template>
+
+<!-- 2 Resumen -->
+<div class="pantalla" id="resumen"><div class="ventana"><div class="barra"><i></i><i></i><i></i> AUTODEV - Gestión de Licencias</div><div class="cuerpo"><div class="contenido">
+  <div class="fila"><h1 style="flex:1">Resumen</h1>Mes: <div class="campo combo" style="flex:0 0 190px;color:#222">Octubre 2026</div></div>
+  <div class="sub">Ventas del mes seleccionado y estado actual de la cartera</div>
+  <div class="fila"><div class="caja tarjeta">Ingresos del mes<b>S/ 0,000.00</b></div>
+    <div class="caja tarjeta">Meta del mes<b>S/ 1,500.00</b><div class="barraP"><span style="width:70%"></span></div></div>
+    <div class="caja tarjeta">Licencias vendidas<b>00</b></div></div>
+  <div style="font-weight:700;font-size:18px">Ingresos por programa</div>
+  <div class="caja" style="display:flex;flex-direction:column;gap:9px">
+    <div class="fila"><span style="width:130px">AUTODEV</span><div class="barraP"><span style="width:90%"></span></div><span>S/ 000.00</span></div>
+    <div class="fila"><span style="width:130px">AUTOSIRE</span><div class="barraP"><span style="width:40%"></span></div><span>S/ 000.00</span></div>
+    <div class="fila"><span style="width:130px">AUTOGUIAS</span><div class="barraP"><span style="width:20%"></span></div><span>S/ 000.00</span></div>
+    <div class="fila"><span style="width:130px">AUTORHE ...</span><div class="barraP"><span style="width:0%"></span></div><span>S/ 000.00</span></div>
+  </div>
+  <div style="font-weight:700;font-size:18px">Estado actual de la cartera</div>
+  <div class="fila"><div class="caja tarjeta">Vigentes<b>00</b></div><div class="caja tarjeta">Por vencer (30 días)<b>00</b></div>
+    <div class="caja tarjeta">Vencidas sin renovar<b>00</b></div><div class="caja tarjeta">Clientes activos<b>00</b></div></div>
+</div></div></div></div>
+
+<!-- 3 Registrar venta -->
+<div class="pantalla" id="venta"><div class="ventana"><div class="barra"><i></i><i></i><i></i> AUTODEV - Gestión de Licencias</div><div class="cuerpo"><div class="contenido">
+  <h1>Registrar venta de licencia</h1><div class="sub">Venta nueva o renovación. El vencimiento se calcula solo (un año).</div>
+  <div class="caja" style="display:flex;flex-direction:column;gap:12px;padding:16px">
+    <div class="fila"><span class="lbl">Cliente *</span><div class="campo combo">Elegir cliente</div><div class="btn">+ Nuevo cliente</div></div>
+    <div class="fila"><span class="lbl">Programa *</span><div class="campo combo">AUTODEV</div><span class="lbl">Tipo *</span><div class="campo combo">Nueva / Renovación</div></div>
+    <div class="fila"><span class="lbl">Fecha de venta *</span><div class="campo">dd/mm/aaaa</div><span class="lbl">Medio de pago *</span><div class="campo combo">Yape</div></div>
+    <div class="fila"><span class="lbl">Monto S/ *</span><div class="campo">precio de lista</div><span class="lbl">Descuento %</span><div class="campo">0</div></div>
+    <div class="fila" style="align-items:flex-start"><span class="lbl">Notas</span><div class="campo" style="height:64px"></div></div>
+    <div class="fila"><span>Total a cobrar: <b style="font-size:22px">S/ 000.00</b></span><span style="margin-left:30px">Vence el: <b>dd/mm/aaaa</b></span>
+      <span style="flex:1"></span><div class="btn">Limpiar</div><div class="btn pri">Registrar venta</div></div>
+  </div>
+  <div class="nota">Si el tipo es Renovación, la nueva licencia empieza cuando vence la anterior.</div>
+</div></div></div></div>
+
+<!-- 4 Licencias -->
+<div class="pantalla" id="licencias"><div class="ventana"><div class="barra"><i></i><i></i><i></i> AUTODEV - Gestión de Licencias</div><div class="cuerpo"><div class="contenido">
+  <div class="fila"><h1 style="flex:1">Licencias</h1><div class="btn">Exportar a Excel</div><div class="btn pri">Renovar</div></div>
+  <div class="sub">Licencias registradas y su estado a la fecha</div>
+  <div class="fila"><div class="campo" style="flex:0 0 240px">Buscar cliente o programa</div>Estado:<div class="campo combo" style="flex:0 0 140px;color:#222">Todos</div>Programa:<div class="campo combo" style="flex:0 0 160px;color:#222">Todos</div></div>
+  <table><tr><th>N°</th><th>Cliente</th><th>Programa</th><th>Tipo</th><th>Venta</th><th>Total S/</th><th>Vence</th><th>Días</th><th>Estado</th></tr>
+    <tr><td>16</td><td>Cliente A</td><td>AUTODEV</td><td>Renovación</td><td>dd/mm/aa</td><td>225.00</td><td>dd/mm/aa</td><td>364</td><td>Vigente</td></tr>
+    <tr><td>15</td><td>Cliente B</td><td>AUTOSIRE</td><td>Nueva</td><td>dd/mm/aa</td><td>180.00</td><td>dd/mm/aa</td><td>16</td><td class="rojo">Por vencer</td></tr>
+    <tr><td>14</td><td>Cliente C</td><td>AUTODEV</td><td>Nueva</td><td>dd/mm/aa</td><td>250.00</td><td>dd/mm/aa</td><td>-30</td><td class="rojo">Vencida</td></tr>
+    <tr><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr></table>
+  <div class="sub" style="margin-top:0">Mostrando 00 de 00 licencias</div>
+</div></div></div></div>
+
+<!-- 5 Alertas -->
+<div class="pantalla" id="alertas"><div class="ventana"><div class="barra"><i></i><i></i><i></i> AUTODEV - Gestión de Licencias</div><div class="cuerpo"><div class="contenido">
+  <div class="fila"><h1 style="flex:1">Alertas de vencimiento</h1><div class="btn">Revisar vencimientos ahora</div></div>
+  <div class="sub">Licencias que vencen en 30 días o menos, o que vencieron sin renovarse</div>
+  <table><tr><th>Cliente</th><th>Programa</th><th>Vence</th><th>Situación</th><th>Contacto</th><th>Alerta generada</th></tr>
+    <tr><td>Cliente C</td><td>AUTODEV</td><td>dd/mm/aa</td><td class="rojo">Vencida hace 30 días</td><td>9xx xxx xxx</td><td>dd/mm/aa</td></tr>
+    <tr><td>Cliente D</td><td>AUTODEV</td><td>dd/mm/aa</td><td class="rojo">Vence en 5 días</td><td>9xx xxx xxx</td><td>dd/mm/aa</td></tr>
+    <tr><td>Cliente B</td><td>AUTOSIRE</td><td>dd/mm/aa</td><td class="rojo">Vence en 16 días</td><td>correo@...</td><td>dd/mm/aa</td></tr></table>
+  <div style="flex:1"></div>
+  <div class="fila"><div class="btn pri">Contactar por WhatsApp</div><div class="btn">Renovar</div><div class="btn">Marcar como atendida</div><span class="sub" style="margin:0">00 alertas pendientes</span></div>
+  <div class="nota">"Contactar" abre WhatsApp con el mensaje de renovación ya escrito (wa.me).</div>
+</div></div></div></div>
+
+<!-- 6 Clientes -->
+<div class="pantalla" id="clientes"><div class="ventana"><div class="barra"><i></i><i></i><i></i> AUTODEV - Gestión de Licencias</div><div class="cuerpo"><div class="contenido">
+  <div class="fila"><h1 style="flex:1">Clientes</h1><div class="btn">Editar</div><div class="btn pri">+ Nuevo cliente</div></div>
+  <div class="sub">Empresas y personas que compran licencias</div>
+  <div class="campo" style="flex:0 0 32px;width:300px">Buscar por nombre o RUC</div>
+  <table><tr><th>N°</th><th>Nombre o razón social</th><th>RUC</th><th>Contacto</th></tr>
+    <tr><td>1</td><td>Cliente A SAC</td><td>20xxxxxxxxx</td><td>9xx xxx xxx</td></tr>
+    <tr><td>2</td><td>Cliente B EIRL</td><td>20xxxxxxxxx</td><td>correo@...</td></tr>
+    <tr><td>...</td><td>...</td><td>...</td><td>...</td></tr></table>
+  <div class="caja" style="width:420px;align-self:flex-end;display:flex;flex-direction:column;gap:8px">
+    <b>Ventana: Nuevo cliente</b><div>Nombre o razón social *</div><div class="campo"></div>
+    <div>RUC (11 dígitos, opcional)</div><div class="campo"></div><div>Contacto (celular o correo)</div><div class="campo"></div>
+    <div class="fila" style="justify-content:flex-end"><div class="btn">Cancelar</div><div class="btn pri">Guardar</div></div></div>
+</div></div></div></div>
+
+<!-- 7 Programas -->
+<div class="pantalla" id="programas"><div class="ventana"><div class="barra"><i></i><i></i><i></i> AUTODEV - Gestión de Licencias</div><div class="cuerpo"><div class="contenido">
+  <div class="fila"><h1 style="flex:1">Programas y precios</h1><div class="btn pri">Cambiar precio</div></div>
+  <div class="sub">Precio de lista anual de cada programa</div>
+  <table><tr><th>N°</th><th>Programa</th><th>Precio de lista S/</th></tr>
+    <tr><td>1</td><td>AUTODEV</td><td>000.00</td></tr><tr><td>2</td><td>AUTOSIRE</td><td>000.00</td></tr>
+    <tr><td>3</td><td>AUTOGUIAS</td><td>000.00</td></tr><tr><td>4</td><td>AUTORHE</td><td>000.00</td></tr>
+    <tr><td>5</td><td>AUTOBUZON</td><td>000.00</td></tr><tr><td>6</td><td>AUTOVALIDADOR</td><td>000.00</td></tr></table>
+  <div class="nota">Solo el Administrador puede cambiar precios; para el Vendedor el botón está desactivado.</div>
+</div></div></div></div>
+
+<script>
+  const id = (location.hash || '#login').slice(1);
+  const pantalla = document.getElementById(id);
+  pantalla.classList.add('activa');
+  const cuerpo = pantalla.querySelector('.cuerpo');
+  if (id !== 'login') {
+    const menu = document.getElementById('menu').content.cloneNode(true);
+    menu.querySelector('[data-k="' + id + '"]').classList.add('sel');
+    cuerpo.prepend(menu);
+  }
+</script>
+</body></html>

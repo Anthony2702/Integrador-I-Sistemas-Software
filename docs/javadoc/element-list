@@ -1,0 +1,9 @@
+com.autodev.licencias
+com.autodev.licencias.config
+com.autodev.licencias.controlador
+com.autodev.licencias.dao
+com.autodev.licencias.dao.mysql
+com.autodev.licencias.modelo
+com.autodev.licencias.servicio
+com.autodev.licencias.util
+com.autodev.licencias.vista

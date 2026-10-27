@@ -1,0 +1,38 @@
+@startuml
+!include estilo.iuml
+title Diagrama de casos de uso del sistema
+left to right direction
+
+actor "Vendedor" as Vend
+actor "Administrador" as Adm
+actor "Temporizador\n(cada 24 h)" as Tiempo
+actor "WhatsApp" as WA
+Adm -|> Vend
+
+rectangle "Sistema de Gestión de Licencias AUTODEV" {
+  usecase "CU01 Iniciar sesión" as CU01
+  usecase "CU02 Registrar venta de licencia" as CU02
+  usecase "CU03 Renovar licencia" as CU03
+  usecase "CU04 Gestionar clientes" as CU04
+  usecase "CU05 Consultar licencias" as CU05
+  usecase "CU06 Exportar licencias a Excel" as CU06
+  usecase "CU07 Generar alertas de vencimiento" as CU07
+  usecase "CU08 Atender alerta / contactar cliente" as CU08
+  usecase "CU09 Ver resumen de ventas y cartera" as CU09
+  usecase "CU10 Cambiar precio de programa" as CU10
+}
+
+Vend --> CU01
+Vend --> CU02
+Vend --> CU03
+Vend --> CU04
+Vend --> CU05
+Vend --> CU07
+Vend --> CU08
+Vend --> CU09
+Adm --> CU10
+Tiempo --> CU07
+CU08 --> WA
+CU03 .> CU02 : <<extend>>
+CU06 .> CU05 : <<extend>>
+@enduml

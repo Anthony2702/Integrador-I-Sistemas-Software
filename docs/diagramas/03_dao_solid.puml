@@ -1,0 +1,65 @@
+@startuml
+!include estilo.iuml
+title Capa DAO y principios SOLID (ejemplo: licencias y alertas)
+
+interface LicenciaDAO {
+  + guardar(Licencia) : Licencia
+  + actualizarEstado(int, EstadoLicencia) : void
+  + listar() : List<Licencia>
+}
+interface AlertaDAO {
+  + guardar(Alerta) : Alerta
+  + existeParaLicencia(int) : boolean
+  + listarPendientes() : List<Alerta>
+  + marcarAtendida(int) : void
+  + atenderPorLicencia(int) : void
+}
+class LicenciaDAOMySQL
+class AlertaDAOMySQL
+class ConexionBD {
+  + abrir() : Connection
+  + probar() : boolean
+}
+class LicenciaDAOMemoria <<prueba>>
+class AlertaDAOMemoria <<prueba>>
+
+class LicenciaServicio {
+  + registrarVenta(NuevaVenta) : Licencia
+  + listar() : List<Licencia>
+  + hoy() : LocalDate
+}
+class AlertaServicio {
+  + generarAlertas() : int
+  + listarPendientes() : List<Alerta>
+  + atender(Alerta) : void
+  + enlaceWhatsApp(Alerta) : Optional<URI>
+}
+class Contexto <<arma dependencias>>
+
+LicenciaDAOMySQL ..|> LicenciaDAO
+AlertaDAOMySQL ..|> AlertaDAO
+LicenciaDAOMemoria ..|> LicenciaDAO
+AlertaDAOMemoria ..|> AlertaDAO
+LicenciaDAOMySQL --> ConexionBD
+AlertaDAOMySQL --> ConexionBD
+LicenciaServicio --> LicenciaDAO
+LicenciaServicio --> AlertaDAO
+AlertaServicio --> LicenciaServicio
+AlertaServicio --> AlertaDAO
+Contexto ..> LicenciaDAOMySQL : crea
+Contexto ..> LicenciaServicio : inyecta DAO
+
+note right of LicenciaServicio
+  **D** (inversión de dependencias): el servicio
+  depende de la interfaz, no de MySQL.
+  En las pruebas recibe el DAO en memoria.
+end note
+note bottom of AlertaDAO
+  **I** (segregación de interfaces):
+  una interfaz pequeña por entidad.
+end note
+note bottom of AlertaServicio
+  **S** (responsabilidad única):
+  cada servicio atiende un solo tema.
+end note
+@enduml

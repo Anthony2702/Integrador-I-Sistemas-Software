@@ -1,0 +1,55 @@
+@startuml
+!include estilo.iuml
+title Modelo entidad-relación (diseño lógico)
+skinparam linetype ortho
+
+entity "usuario" as usuario {
+  * id_usuario : INT <<PK>>
+  --
+  * usuario : VARCHAR(30) <<UQ>>
+  * clave_hash : VARCHAR(200)
+  * nombre : VARCHAR(100)
+  * rol : VARCHAR(20)
+  * activo : BOOLEAN
+}
+entity "cliente" as cliente {
+  * id_cliente : INT <<PK>>
+  --
+  * nombre : VARCHAR(150)
+  ruc : VARCHAR(11) <<UQ>>
+  contacto : VARCHAR(100)
+}
+entity "programa" as programa {
+  * id_programa : INT <<PK>>
+  --
+  * nombre : VARCHAR(50) <<UQ>>
+  * precio : DECIMAL(10,2)
+}
+entity "licencia" as licencia {
+  * id_licencia : INT <<PK>>
+  --
+  * id_cliente : INT <<FK>>
+  * id_programa : INT <<FK>>
+  * tipo : VARCHAR(20)
+  * fecha_venta : DATE
+  * monto : DECIMAL(10,2)
+  * descuento : DECIMAL(5,4)
+  * medio_pago : VARCHAR(30)
+  * fecha_emision : DATE
+  * fecha_vencimiento : DATE
+  * estado : VARCHAR(20)
+  notas : VARCHAR(255)
+}
+entity "alerta" as alerta {
+  * id_alerta : INT <<PK>>
+  --
+  * id_licencia : INT <<FK>>
+  * fecha_generada : DATETIME
+  * dias_restantes : INT
+  * atendida : BOOLEAN
+}
+
+cliente ||--o{ licencia : compra
+programa ||--o{ licencia : corresponde a
+licencia ||--o{ alerta : genera
+@enduml

@@ -1,0 +1,52 @@
+@startuml
+!include estilo.iuml
+title Arquitectura del sistema: MVC con capas de servicio y DAO
+left to right direction
+
+actor "Vendedor /\nAdministrador" as U
+
+package "Vista (Swing + FlatLaf)" as V {
+  component "LoginVista" as LV
+  component "PrincipalVista\n(menú lateral)" as PV
+  component "ResumenPanel · VentaPanel\nLicenciasPanel · AlertasPanel\nClientesPanel · ProgramasPanel" as PAN
+}
+
+package "Controlador" as C {
+  component "LoginControlador" as LC
+  component "PrincipalControlador\n(implementa Navegacion)" as PC
+  component "Resumen · Venta · Licencias\nAlertas · Clientes · Programas\nControlador" as CC
+}
+
+package "Modelo" as M {
+  package "Servicios (reglas de negocio)" as S {
+    component "AutenticacionServicio\nLicenciaServicio · AlertaServicio\nClienteServicio · ProgramaServicio\nReporteServicio · ExportadorExcel" as SV
+  }
+  package "Dominio" as D {
+    component "Licencia · Cliente · Programa\nAlerta · Usuario · ResumenMes" as DOM
+  }
+  package "DAO (interfaces)" as DI {
+    component "LicenciaDAO · ClienteDAO\nProgramaDAO · AlertaDAO\nUsuarioDAO" as DAOI
+  }
+}
+
+package "Persistencia" as P {
+  component "LicenciaDAOMySQL · ClienteDAOMySQL\nProgramaDAOMySQL · AlertaDAOMySQL\nUsuarioDAOMySQL · ConexionBD" as DAOM
+}
+database "MySQL 8\nautodev_licencias" as BD
+
+U --> V : usa
+V --> C : eventos (clic, escribir)
+C --> SV : pide operaciones
+C ..> V : actualiza la pantalla
+SV --> DOM : usa
+SV --> DAOI : depende de interfaces
+DAOM ..|> DAOI : implementa
+DAOM --> BD : JDBC +\nPreparedStatement
+
+note bottom of SV
+  Guava: Preconditions, Multimaps
+  Commons Lang: StringUtils, NumberUtils
+  Apache POI: exportar a Excel
+  Logback: registro de eventos
+end note
+@enduml

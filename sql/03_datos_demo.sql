@@ -5,6 +5,9 @@
 -- Ejecutar después de 01_esquema.sql.
 -- =============================================================
 
+-- Asegura que las tildes (Renovación, María, ...) se guarden bien
+SET NAMES utf8mb4;
+
 USE autodev_licencias;
 
 INSERT INTO cliente (nombre, ruc, contacto) VALUES
@@ -47,6 +50,10 @@ FROM (
     UNION ALL SELECT 2,  1, 'Nueva',      DATE_ADD(DATE_SUB(@hoy, INTERVAL 1 YEAR), INTERVAL 5 DAY), 250.00, 0.0000, 'Transferencia', NULL
     -- Vencida hace 30 días, sin renovar
     UNION ALL SELECT 8,  1, 'Nueva',      DATE_SUB(DATE_SUB(@hoy, INTERVAL 1 YEAR), INTERVAL 30 DAY), 250.00, 0.0000, 'Yape', NULL
-    -- Renovación de esta misma semana
+    -- Licencia del año pasado que el cliente renovó ayer (la de abajo)
+    UNION ALL SELECT 5,  1, 'Nueva',      DATE_SUB(DATE_SUB(@hoy, INTERVAL 1 YEAR), INTERVAL 1 DAY), 250.00, 0.0000, 'Transferencia', NULL
     UNION ALL SELECT 5,  1, 'Renovación', DATE_SUB(@hoy, INTERVAL 1 DAY),  250.00, 0.1000, 'Transferencia', 'Renovación anual'
 ) AS t;
+
+UPDATE licencia SET estado = 'Renovada'
+WHERE id_cliente = 5 AND id_programa = 1 AND tipo = 'Nueva';

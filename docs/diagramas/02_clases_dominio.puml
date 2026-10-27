@@ -1,0 +1,75 @@
+@startuml
+!include estilo.iuml
+title Diagrama de clases: modelo de dominio
+
+class Cliente {
+  - idCliente : int
+  - nombre : String
+  - ruc : String
+  - contacto : String
+}
+class Programa {
+  - idPrograma : int
+  - nombre : String
+  - precio : BigDecimal
+}
+class Licencia {
+  - idLicencia : int
+  - cliente : Cliente
+  - programa : Programa
+  - tipo : TipoLicencia
+  - fechaVenta : LocalDate
+  - monto : BigDecimal
+  - descuento : BigDecimal
+  - medioPago : String
+  - fechaEmision : LocalDate
+  - fechaVencimiento : LocalDate
+  - estado : EstadoLicencia
+  - notas : String
+  --
+  + calcularVencimiento() : LocalDate
+  + diasRestantes(hoy) : long
+  + actualizarEstado(hoy, diasAviso) : EstadoLicencia
+  + getMontoFinal() : BigDecimal
+}
+class Alerta {
+  - idAlerta : int
+  - licencia : Licencia
+  - fechaGenerada : LocalDateTime
+  - diasRestantes : int
+  - atendida : boolean
+  --
+  + marcarAtendida() : void
+}
+class Usuario {
+  - idUsuario : int
+  - usuario : String
+  - claveHash : String
+  - nombre : String
+  - rol : Rol
+  - activo : boolean
+  --
+  + esAdmin() : boolean
+}
+enum EstadoLicencia {
+  VIGENTE
+  POR_VENCER
+  VENCIDA
+  RENOVADA
+}
+enum TipoLicencia {
+  NUEVA
+  RENOVACION
+}
+enum Rol {
+  ADMIN
+  VENDEDOR
+}
+
+Cliente "1" -- "0..*" Licencia : compra >
+Programa "1" -- "0..*" Licencia : corresponde a <
+Licencia "1" -- "0..*" Alerta : genera >
+Licencia --> EstadoLicencia
+Licencia --> TipoLicencia
+Usuario --> Rol
+@enduml

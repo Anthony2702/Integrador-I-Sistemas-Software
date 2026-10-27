@@ -1,0 +1,46 @@
+@startgantt
+<style>
+ganttDiagram {
+  task { FontName Arial; FontSize 11; BackGroundColor #2F6FB2; LineColor #1E3A5F }
+  milestone { BackGroundColor #B26A00; LineColor #B26A00 }
+}
+</style>
+printscale weekly
+Project starts 2026-08-10
+saturday are closed
+sunday are closed
+
+-- Unidad 1: Planificación y análisis --
+[Lean Canvas] starts 2026-08-10 and lasts 10 days
+[Project Charter, EDT y Gantt] starts 2026-08-24 and lasts 5 days
+[Requisitos y prototipos] starts 2026-08-31 and lasts 10 days
+[APF1] happens 2026-09-13
+-- Unidad 2: Diseño --
+[Procesos BPMN] starts 2026-09-14 and lasts 5 days
+[Diseño de base de datos] starts 2026-09-21 and lasts 5 days
+[Prototipo UX/UI y documentación] starts 2026-09-28 and lasts 5 days
+[APF2] happens 2026-10-04
+-- Unidad 3: Desarrollo --
+[Arquitectura MVC, DAO y TDD] starts 2026-10-05 and lasts 10 days
+[Desarrollo con librerías Java] starts 2026-10-19 and lasts 5 days
+[Git, GitHub y avance 40 %] starts 2026-10-26 and lasts 5 days
+[APF3] happens 2026-10-27
+-- Unidad 4: Pruebas, despliegue y mantenimiento --
+[Pruebas de software] starts 2026-11-02 and lasts 10 days
+[Pruebas de seguridad] starts 2026-11-16 and lasts 5 days
+[Despliegue con Maven] starts 2026-11-23 and lasts 5 days
+[Plan de monitoreo] starts 2026-11-30 and lasts 5 days
+[Plan de mantenimiento y cierre] starts 2026-12-07 and lasts 5 days
+[Proyecto final] happens 2026-12-13
+
+[Lean Canvas] is 100% completed
+[Project Charter, EDT y Gantt] is 100% completed
+[Requisitos y prototipos] is 100% completed
+[Procesos BPMN] is 100% completed
+[Diseño de base de datos] is 100% completed
+[Prototipo UX/UI y documentación] is 100% completed
+[Arquitectura MVC, DAO y TDD] is 100% completed
+[Desarrollo con librerías Java] is 100% completed
+[Git, GitHub y avance 40 %] is 100% completed
+today is 2026-10-27 and is colored in #C62828
+@endgantt

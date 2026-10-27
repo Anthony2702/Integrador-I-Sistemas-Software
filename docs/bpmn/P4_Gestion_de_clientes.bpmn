@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definiciones_P4" targetNamespace="http://autodev.pe/bpmn">
+  <collaboration id="Colaboracion_P4">
+    <participant id="Pool_P4" name="P4 Registro y actualización de clientes" processRef="Proceso_P4" />
+  </collaboration>
+  <process id="Proceso_P4" name="P4 Registro y actualización de clientes" isExecutable="false">
+    <laneSet id="Carriles_P4">
+      <lane id="Carril_P4_0" name="Vendedor AUTODEV">
+        <flowNodeRef>P4_s1</flowNodeRef>
+        <flowNodeRef>P4_t1</flowNodeRef>
+        <flowNodeRef>P4_t5</flowNodeRef>
+        <flowNodeRef>P4_e1</flowNodeRef>
+      </lane>
+      <lane id="Carril_P4_1" name="Sistema AUTODEV">
+        <flowNodeRef>P4_t2</flowNodeRef>
+        <flowNodeRef>P4_g1</flowNodeRef>
+        <flowNodeRef>P4_t3</flowNodeRef>
+        <flowNodeRef>P4_t4</flowNodeRef>
+      </lane>
+    </laneSet>
+    <startEvent id="P4_s1" name="Cliente nuevo o cambio de datos">
+      <outgoing>P4_f1</outgoing>
+    </startEvent>
+    <task id="P4_t1" name="Ingresa nombre, RUC y contacto">
+      <incoming>P4_f1</incoming>
+      <incoming>P4_f6</incoming>
+      <outgoing>P4_f2</outgoing>
+    </task>
+    <task id="P4_t2" name="Valida nombre y RUC de 11 dígitos">
+      <incoming>P4_f2</incoming>
+      <outgoing>P4_f3</outgoing>
+    </task>
+    <exclusiveGateway id="P4_g1" name="¿Datos válidos y RUC no repetido?">
+      <incoming>P4_f3</incoming>
+      <outgoing>P4_f4</outgoing>
+      <outgoing>P4_f5</outgoing>
+    </exclusiveGateway>
+    <task id="P4_t3" name="Muestra el error">
+      <incoming>P4_f5</incoming>
+      <outgoing>P4_f6</outgoing>
+    </task>
+    <task id="P4_t4" name="Guarda el cliente">
+      <incoming>P4_f4</incoming>
+      <outgoing>P4_f7</outgoing>
+    </task>
+    <task id="P4_t5" name="Ve al cliente en la lista para venderle">
+      <incoming>P4_f7</incoming>
+      <outgoing>P4_f8</outgoing>
+    </task>
+    <endEvent id="P4_e1" name="Cliente registrado">
+      <incoming>P4_f8</incoming>
+    </endEvent>
+    <sequenceFlow id="P4_f1" sourceRef="P4_s1" targetRef="P4_t1" />
+    <sequenceFlow id="P4_f2" sourceRef="P4_t1" targetRef="P4_t2" />
+    <sequenceFlow id="P4_f3" sourceRef="P4_t2" targetRef="P4_g1" />
+    <sequenceFlow id="P4_f4" name="Sí" sourceRef="P4_g1" targetRef="P4_t4" />
+    <sequenceFlow id="P4_f5" name="No" sourceRef="P4_g1" targetRef="P4_t3" />
+    <sequenceFlow id="P4_f6" name="Corrige" sourceRef="P4_t3" targetRef="P4_t1" />
+    <sequenceFlow id="P4_f7" sourceRef="P4_t4" targetRef="P4_t5" />
+    <sequenceFlow id="P4_f8" sourceRef="P4_t5" targetRef="P4_e1" />
+  </process>
+  <bpmndi:BPMNDiagram id="Diagrama_P4">
+    <bpmndi:BPMNPlane id="Plano_P4" bpmnElement="Colaboracion_P4">
+      <bpmndi:BPMNShape id="Pool_P4_di" bpmnElement="Pool_P4" isHorizontal="true">
+        <dc:Bounds x="20" y="20" width="1400" height="380" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Carril_P4_0_di" bpmnElement="Carril_P4_0" isHorizontal="true">
+        <dc:Bounds x="50" y="20" width="1370" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Carril_P4_1_di" bpmnElement="Carril_P4_1" isHorizontal="true">
+        <dc:Bounds x="50" y="170" width="1370" height="230" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="P4_s1_di" bpmnElement="P4_s1">
+        <dc:Bounds x="137" y="77" width="36" height="36" />
+        <bpmndi:BPMNLabel><dc:Bounds x="100" y="117" width="110" height="40" /></bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="P4_t1_di" bpmnElement="P4_t1">
+        <dc:Bounds x="260" y="60" width="120" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="P4_t2_di" bpmnElement="P4_t2">
+        <dc:Bounds x="425" y="210" width="120" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="P4_g1_di" bpmnElement="P4_g1" isMarkerVisible="true">
+        <dc:Bounds x="625" y="220" width="50" height="50" />
+        <bpmndi:BPMNLabel><dc:Bounds x="595" y="176" width="110" height="40" /></bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="P4_t3_di" bpmnElement="P4_t3">
+        <dc:Bounds x="755" y="310" width="120" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="P4_t4_di" bpmnElement="P4_t4">
+        <dc:Bounds x="920" y="210" width="120" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="P4_t5_di" bpmnElement="P4_t5">
+        <dc:Bounds x="1085" y="60" width="120" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="P4_e1_di" bpmnElement="P4_e1">
+        <dc:Bounds x="1292" y="77" width="36" height="36" />
+        <bpmndi:BPMNLabel><dc:Bounds x="1255" y="117" width="110" height="40" /></bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="P4_f1_di" bpmnElement="P4_f1">
+        <di:waypoint x="173" y="95" />
+        <di:waypoint x="260" y="95" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="P4_f2_di" bpmnElement="P4_f2">
+        <di:waypoint x="380" y="95" />
+        <di:waypoint x="485" y="95" />
+        <di:waypoint x="485" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="P4_f3_di" bpmnElement="P4_f3">
+        <di:waypoint x="545" y="245" />
+        <di:waypoint x="625" y="245" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="P4_f4_di" bpmnElement="P4_f4">
+        <di:waypoint x="675" y="245" />
+        <di:waypoint x="920" y="245" />
+        <bpmndi:BPMNLabel><dc:Bounds x="786" y="223" width="50" height="16" /></bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="P4_f5_di" bpmnElement="P4_f5">
+        <di:waypoint x="650" y="270" />
+        <di:waypoint x="650" y="345" />
+        <di:waypoint x="755" y="345" />
+        <bpmndi:BPMNLabel><dc:Bounds x="656" y="298" width="50" height="16" /></bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="P4_f6_di" bpmnElement="P4_f6">
+        <di:waypoint x="815" y="380" />
+        <di:waypoint x="815" y="386" />
+        <di:waypoint x="320" y="386" />
+        <di:waypoint x="320" y="130" />
+        <bpmndi:BPMNLabel><dc:Bounds x="821" y="373" width="50" height="16" /></bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="P4_f7_di" bpmnElement="P4_f7">
+        <di:waypoint x="1040" y="245" />
+        <di:waypoint x="1145" y="245" />
+        <di:waypoint x="1145" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="P4_f8_di" bpmnElement="P4_f8">
+        <di:waypoint x="1205" y="95" />
+        <di:waypoint x="1292" y="95" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

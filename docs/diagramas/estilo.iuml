@@ -1,0 +1,21 @@
+!pragma layout smetana
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundCorner 8
+skinparam ArrowColor #1E3A5F
+skinparam ArrowThickness 1.2
+skinparam classBackgroundColor #FFFFFF
+skinparam classBorderColor #1E3A5F
+skinparam classHeaderBackgroundColor #DCE8F5
+skinparam packageBorderColor #1E3A5F
+skinparam packageBackgroundColor #F4F6F9
+skinparam componentBorderColor #1E3A5F
+skinparam componentBackgroundColor #FFFFFF
+skinparam noteBackgroundColor #FFF8E1
+skinparam noteBorderColor #B26A00
+skinparam actorBorderColor #1E3A5F
+skinparam usecaseBorderColor #1E3A5F
+skinparam usecaseBackgroundColor #FFFFFF
+skinparam databaseBackgroundColor #DCE8F5
+hide circle

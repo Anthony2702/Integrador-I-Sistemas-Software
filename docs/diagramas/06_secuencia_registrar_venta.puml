@@ -1,0 +1,28 @@
+@startuml
+!include estilo.iuml
+title Secuencia: registrar una venta (recorrido por las capas MVC y DAO)
+autonumber
+
+actor Vendedor
+participant "VentaPanel\n(Vista)" as V
+participant "VentaControlador\n(Controlador)" as C
+participant "LicenciaServicio\n(Modelo)" as S
+participant "Licencia\n(Dominio)" as L
+participant "LicenciaDAOMySQL\n(DAO)" as D
+database "MySQL" as BD
+
+Vendedor -> V : llena el formulario y pulsa "Registrar venta"
+V -> C : evento del botón
+C -> C : lee y convierte fecha, monto y descuento
+C -> S : registrarVenta(NuevaVenta)
+S -> S : valida datos (Guava Preconditions,\nCommons Lang)
+S -> L : calcularVencimiento()
+S -> L : actualizarEstado(hoy, 30)
+S -> D : guardar(licencia)
+D -> BD : INSERT con PreparedStatement
+BD --> D : id generado
+D --> S : licencia con id
+S -> S : log.info("Venta registrada...")
+S --> C : licencia
+C -> V : mensaje "Venta registrada" y limpia el formulario
+@enduml

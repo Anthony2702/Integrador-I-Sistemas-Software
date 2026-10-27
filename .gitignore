@@ -1,0 +1,16 @@
+# Compilación
+target/
+
+# Configuración local con claves (usar config.example.properties como plantilla)
+config.properties
+
+# Logs y archivos exportados
+logs/
+*.log
+*.xlsx
+
+# IDE y sistema
+.idea/
+*.iml
+.vscode/
+.DS_Store

@@ -4,6 +4,9 @@
 -- Ejecutar con: mysql -u root -p < sql/01_esquema.sql
 -- =============================================================
 
+-- Asegura que las tildes (Renovación, María, ...) se guarden bien
+SET NAMES utf8mb4;
+
 CREATE DATABASE IF NOT EXISTS autodev_licencias
     CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
 USE autodev_licencias;
